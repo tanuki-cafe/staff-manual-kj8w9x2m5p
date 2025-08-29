@@ -7,117 +7,587 @@
     <meta name="robots" content="noindex, nofollow">
     <style>
         body {
-            font-family: 'Noto Sans JP', Arial, sans-serif;
-            background-color: #f0f8e8;
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8e8 100%);
             color: #2d5016;
             line-height: 1.8;
             margin: 0;
             padding: 20px;
+            min-height: 100vh;
         }
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.95);
             padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(45, 80, 22, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #7ba05b;
+        }
+        .tanuki {
+            font-size: 4em;
+            margin-bottom: 20px;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
         }
         h1 {
-            text-align: center;
             color: #1a3009;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            border-bottom: 3px solid #7ba05b;
-            padding-bottom: 20px;
+            font-size: 2.8em;
+            margin: 0;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .subtitle {
+            color: #5a7c3a;
+            font-size: 1.2em;
+            margin-top: 10px;
+            font-style: italic;
         }
         h2 {
+            color: #1a3009;
+            font-size: 2.2em;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            padding: 20px 30px;
+            background: linear-gradient(135deg, #f8fdf5 0%, #eef7e8 100%);
+            border-left: 6px solid #7ba05b;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        h3 {
             color: #2d5016;
-            font-size: 1.8em;
-            margin-top: 40px;
+            font-size: 1.6em;
+            margin-top: 35px;
             margin-bottom: 20px;
             padding: 15px 20px;
             background-color: #f8fdf5;
-            border-left: 5px solid #7ba05b;
+            border-left: 4px solid #9db87c;
+            border-radius: 5px;
         }
-        .menu-item {
-            display: block;
+        h4 {
+            color: #2d5016;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .tenet {
+            background: linear-gradient(135deg, #fff8e7 0%, #f5f8f0 100%);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border-left: 5px solid #d4af37;
+            box-shadow: 0 4px 8px rgba(212, 175, 55, 0.1);
+        }
+        .tenet h4 {
+            color: #8b6914;
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+        .important {
+            background: linear-gradient(135deg, #fff8dc 0%, #fef5e7 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #daa520;
+            margin: 25px 0;
+            box-shadow: 0 4px 8px rgba(218, 165, 32, 0.1);
+        }
+        .prohibited {
+            background: linear-gradient(135deg, #ffe4e1 0%, #ffeae8 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #dc143c;
+            margin: 25px 0;
+            box-shadow: 0 4px 8px rgba(220, 20, 60, 0.1);
+        }
+        .prohibited h2, .prohibited h3, .prohibited h4 {
+            color: #8b0000;
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+        .navigation {
+            position: sticky;
+            top: 20px;
+            background: rgba(248, 253, 245, 0.95);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 1px solid #c8e6c9;
+            backdrop-filter: blur(5px);
+        }
+        .nav-link {
+            display: inline-block;
             color: #2d5016;
             text-decoration: none;
-            padding: 15px 20px;
-            margin: 10px 0;
-            background-color: #f8fdf5;
+            padding: 8px 15px;
+            margin: 5px;
+            background-color: rgba(248, 253, 245, 0.8);
             border-radius: 5px;
-            border-left: 4px solid #7ba05b;
+            border: 1px solid #7ba05b;
             transition: all 0.3s ease;
-        }
-        .menu-item:hover {
-            background-color: #eef7e8;
-            transform: translateX(10px);
-        }
-        .tanuki {
-            text-align: center;
-            font-size: 3em;
-            margin: 20px 0;
-        }
-        .edit-note {
-            background-color: #fff8dc;
-            padding: 20px;
-            border-radius: 5px;
-            border-left: 4px solid #daa520;
-            margin: 20px 0;
             font-size: 0.9em;
+        }
+        .nav-link:hover {
+            background-color: #7ba05b;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(123, 160, 91, 0.3);
+        }
+        .zen-quote {
+            text-align: center;
+            font-style: italic;
+            color: #5a7c3a;
+            font-size: 1.1em;
+            margin: 40px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fdf5 0%, #eef7e8 100%);
+            border-radius: 10px;
+            border: 1px solid #c8e6c9;
+        }
+        .section {
+            scroll-margin-top: 80px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            h1 {
+                font-size: 2.2em;
+            }
+            h2 {
+                font-size: 1.8em;
+                margin-top: 30px;
+            }
+            .tanuki {
+                font-size: 3em;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="tanuki">🦝</div>
-        <h1>たぬきカフェ スタッフマニュアル</h1>
-        
-        <div class="edit-note">
-            <strong>📝 編集方法：</strong><br>
-            各セクションのHTMLファイルをクリック → 鉛筆マーク（✏️）で編集 → 「Commit changes」で保存
+        <div class="header">
+            <div class="tanuki">🦝</div>
+            <h1>たぬきカフェ スタッフマニュアル</h1>
+            <div class="subtitle">静寂と感謝の心で、最高のもてなしを</div>
         </div>
 
-        <h2>📋 目次</h2>
-        
-        <a href="philosophy.html" class="menu-item">
-            <strong>⛩ 理念・世界観・象徴</strong><br>
-            たぬきカフェ3箇条 / 世界観の理解
-        </a>
-        
-        <a href="service.html" class="menu-item">
-            <strong>🍵 接客マニュアル（初級編）</strong><br>
-            基本の型 / 禁止事項 / ロープレ
-        </a>
-        
-        <a href="menu.html" class="menu-item">
-            <strong>🍰 メニュー・商品提供</strong><br>
-            提供姿勢 / 声掛け / オペレーション
-        </a>
-        
-        <a href="preparation.html" class="menu-item">
-            <strong>👨‍🍳 仕込み・在庫・衛生管理</strong><br>
-            仕込み手順 / 清掃ルール / 記録方法
-        </a>
-        
-        <a href="development.html" class="menu-item">
-            <strong>💡 商品開発・原価管理</strong><br>
-            新メニュー開発 / 価格設定 / SNS戦略
-        </a>
-        
-        <a href="education.html" class="menu-item">
-            <strong>📈 スキルアップ教育方針</strong><br>
-            動画基準 / 成長フロー / 評価制度
-        </a>
-        
-        <a href="emergency.html" class="menu-item">
-            <strong>🚨 緊急時対応</strong><br>
-            初動対応 / 連絡先 / 対処法
-        </a>
-        
-        <div style="text-align: center; margin-top: 40px; color: #7ba05b;">
-            <p>🦝 静寂と感謝の心で、最高のもてなしを 🦝</p>
+        <div class="navigation">
+            <strong>📋 目次</strong><br>
+            <a href="#philosophy" class="nav-link">理念・世界観</a>
+            <a href="#service" class="nav-link">接客マニュアル</a>
+            <a href="#menu" class="nav-link">メニュー・商品提供</a>
+            <a href="#preparation" class="nav-link">仕込み・在庫・衛生</a>
+            <a href="#development" class="nav-link">商品開発・原価管理</a>
+            <a href="#education" class="nav-link">スキルアップ教育</a>
+            <a href="#emergency" class="nav-link">緊急時対応</a>
+        </div>
+
+        <section id="philosophy" class="section">
+            <h2>⛩ 理念・世界観・象徴</h2>
+
+            <h3>たぬきカフェ3箇条</h3>
+
+            <div class="tenet">
+                <h4>1. 静けさを守る</h4>
+                <p>沈黙は無関心ではなく、最大のもてなし。<br>
+                一杯の抹茶と共に、余白と静寂を届けること。</p>
+            </div>
+
+            <div class="tenet">
+                <h4>2. 一人ひとりを特別に</h4>
+                <p>お名前を呼び、心を寄せる。<br>
+                必要なら自己紹介を添え、自然な信頼を築くこと。</p>
+            </div>
+
+            <div class="tenet">
+                <h4>3. 感謝を忘れない</h4>
+                <p>たぬき様への一礼、手紙の一言、すべては「整える儀式」。<br>
+                出勤から退勤まで、感謝で始まり感謝で終えること。</p>
+            </div>
+
+            <h4>わかる世界観（現実編）</h4>
+            <ul>
+                <li>地下にある理由</li>
+                <li>ゆっくり提供する理由</li>
+                <li>会話量が少ない理由</li>
+                <li>お名前を伺う理由</li>
+                <li>五感設計</li>
+            </ul>
+
+            <h4>感じる世界観（共鳴編）</h4>
+            <ul>
+                <li>たぬき様と一礼</li>
+                <li>抹茶の儀式性</li>
+                <li>名前を呼ぶ温度</li>
+                <li>声をかけない優しさ</li>
+                <li>手紙の温度</li>
+            </ul>
+
+            <h4>信じる世界観（理念・信仰編）</h4>
+            <ul>
+                <li>創業の原点</li>
+                <li>整うとは何か</li>
+                <li>スタッフの象徴性</li>
+                <li>感謝の儀式</li>
+            </ul>
+
+            <div class="important">
+                <h4>読後に得てほしいこと</h4>
+                <ul>
+                    <li>「静けさを守る」「特別に扱う」「感謝を忘れない」が自分の行動軸として染み込む</li>
+                    <li>自分が案内人であり、この空間の象徴の一部であるという自覚</li>
+                    <li>友人に「ここは特別なカフェ」と誇りを持って言える感情</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="service" class="section">
+            <h2>🍵 接客マニュアル（初級編）</h2>
+
+            <h3>📌 マニュアルの目的と前提</h3>
+            <ul>
+                <li>このマニュアルは<strong>「誰でもできる接客の基本の型」</strong>をまとめたものです</li>
+                <li><strong>あなたはお店の顔です。</strong>あなたの一つひとつの行動や言葉が、たぬきカフェの評価をつくります</li>
+                <li>基本を繰り返し確認・実践して習得することで必ず成果が出ます</li>
+            </ul>
+
+            <h4>基本の型（接客の流れ）</h4>
+            <ul>
+                <li><strong>声・話し方：</strong>落ち着いた声、静かな店内でも届く音量、少しゆっくりとした話速</li>
+                <li><strong>表情：</strong>自然な微笑（口角を軽く上げ、目元も柔らかく）</li>
+                <li><strong>所作：</strong>両手で器を静かに置き、正面で会釈</li>
+                <li><strong>商品説明：</strong>決まったフレーズを使用</li>
+                <li><strong>提供後フォロー：</strong>お客様を見て、満足そうなら会釈</li>
+            </ul>
+
+            <h4>一言会話</h4>
+            <p>無理に話を広げず、「挨拶＋ひとこと」で自然な印象を作る。</p>
+            <ul>
+                <li>例：「足元お気をつけください」</li>
+                <li>例：「香りをお楽しみください」</li>
+            </ul>
+
+            <h4>ロープレ義務</h4>
+            <ul>
+                <li>現場前にロープレ合格が必要です</li>
+                <li>確認項目：声・表情・所作・商品説明・一言会話・提供後フォロー</li>
+                <li>合格まで練習と確認を繰り返し、型を確実に習得</li>
+            </ul>
+
+            <h4>成長ステップ</h4>
+            <ol>
+                <li>基本の型を守る（初級編）</li>
+                <li>ロープレ合格＋現場で型を定着</li>
+                <li>柔らかさや間を加え、上級編でさらに磨く</li>
+            </ol>
+
+            <div class="prohibited">
+                <h4>❌ 禁止事項</h4>
+                <ul>
+                    <li>無表情や無言の接客</li>
+                    <li>自己流の商品説明や適当な説明</li>
+                    <li>お客様の反応を無視する</li>
+                    <li>大きすぎる声・早口・雑な所作</li>
+                    <li>「できている」と自己判断すること</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="menu" class="section">
+            <h2>🍰 メニュー・商品提供</h2>
+
+            <div class="important">
+                <h3>【重要】新人スタッフへの注意事項</h3>
+                <ul>
+                    <li>このマニュアル記載内容以外の行動・応用は<strong>一切禁止</strong>です</li>
+                    <li><strong>勝手な判断・独自アレンジは禁止</strong>。必ず指示通りに行動すること</li>
+                    <li>何か提案や変更がある場合は、<strong>必ず事前に責任者・オーナーに報告</strong></li>
+                    <li><strong>「確認 → 報告 → 実行」</strong>の順を守ること</li>
+                </ul>
+            </div>
+
+            <h4>3-1. 提供姿勢・所作</h4>
+            <ul>
+                <li>お盆は両手で胸の高さ、器は水平に持つ（片手禁止）</li>
+                <li>ロゴや柄が正面に来るように配置</li>
+                <li>音を立てず静かに置く</li>
+                <li>提供後は一歩下がり、軽く会釈</li>
+                <li>視線は穏やかに合わせる</li>
+            </ul>
+
+            <h4>3-2. 声掛け・商品説明（仮）</h4>
+            <ul>
+                <li><strong>基本声掛け：</strong>「お待たせいたしました、◯◯です。」</li>
+                <li><strong>温かい商品：</strong>「器が温かいのでお気をつけください。」</li>
+                <li><strong>冷たい商品：</strong>「冷えておりますので、そのままどうぞ。」</li>
+                <li><strong>スイーツ説明：</strong>「最初はそのままで、後から混ぜても良いと思います。」</li>
+            </ul>
+
+            <h4>3-3. カトラリー・卓上演出</h4>
+            <ul>
+                <li>カトラリーは商品提供前に先出しして演出と安定を確保</li>
+                <li>テーブル上の配置も「利き手側・器のバランス」を意識</li>
+            </ul>
+
+            <h4>3-4. 提供オペレーション</h4>
+            <ul>
+                <li><strong>1名様：</strong>完成後すぐに提供＋会釈</li>
+                <li><strong>2名様：</strong>温→冷→甘の順で同時提供</li>
+                <li><strong>2組同時：</strong>先オーダー優先、役割分担して同時進行</li>
+            </ul>
+
+            <h4>3-5. 見た目・提供基準</h4>
+            <ul>
+                <li>器に指紋・水滴・汚れは厳禁</li>
+                <li>盛り付けは器の余白を2割残す意識</li>
+                <li>カトラリー配置・色味・バランスも全体で調和を</li>
+            </ul>
+        </section>
+
+        <section id="preparation" class="section">
+            <h2>👨‍🍳 仕込み・在庫・衛生管理</h2>
+
+            <h4>4-1. 仕込み準備</h4>
+            <ul>
+                <li>手洗い・消毒</li>
+                <li>器具・材料をトレーにまとめて事前に配置</li>
+                <li>レシピはGoogleドライブにある最新版を確認</li>
+            </ul>
+
+            <h4>4-2. 仕込み順序・実例（仮）</h4>
+            <ul>
+                <li><strong>常温作業：</strong>粉計量・器具の事前準備</li>
+                <li><strong>加熱作業：</strong>プリン焼成・シロップ火入れなど</li>
+                <li><strong>冷却・保存：</strong>粗熱後冷蔵庫、ラベル記入</li>
+                <li><strong>洗浄・清掃：</strong>合間に器具洗浄→最後に全体清掃</li>
+            </ul>
+
+            <h4>4-3. 衛生ルール（効率重視）</h4>
+            <ul>
+                <li>作業を止めず<strong>「合間に洗う・拭く」</strong>を徹底</li>
+                <li>粉や液体をこぼしたら<strong>5秒以内に拭く</strong></li>
+                <li>食材切替時には<strong>手洗い・器具交換</strong>を忘れず</li>
+            </ul>
+
+            <h4>4-4. 在庫管理（仮）</h4>
+            <ul>
+                <li><strong>開店前：</strong>メイン材料確認</li>
+                <li><strong>閉店後：</strong>備品・消耗品確認</li>
+                <li><strong>発注基準：</strong>抹茶2日分・スイーツ1日分・備品週1</li>
+            </ul>
+
+            <h4>4-5. 清掃・衛生チェック</h4>
+            <ul>
+                <li><strong>日次清掃：</strong>作業台・シンク・床・冷蔵庫扉</li>
+                <li><strong>週次清掃：</strong>冷蔵庫中・換気扇・オーブン・排水口</li>
+            </ul>
+
+            <h4>4-6. 記録・報告</h4>
+            <ul>
+                <li>Slack日報 → 売上／在庫状況／トラブル／改善点を記入</li>
+                <li>開店・閉店時に「衛生・在庫・仕込み」チェックリスト記入（記名必須）</li>
+            </ul>
+        </section>
+
+        <section id="development" class="section">
+            <h2>💡 商品開発・原価管理マニュアル（仮）</h2>
+            
+            <p><em>本マニュアルは「外枠・テンプレート」用の仮構成です。実務的に即効性は低いが、後で詳細化・図解化・動画連動しやすいように整理済み。SNS・商品開発・原価管理・価格設定をカテゴリごとに順序立てています。</em></p>
+
+            <h4>1-1. 新メニュー開発プロセス</h4>
+            <ul>
+                <li><strong>アイデア収集：</strong>SNSリサーチ・競合視察・顧客アンケート</li>
+                <li><strong>コンセプト設計：</strong>テーマ・世界観・顧客層を明確化</li>
+                <li><strong>試作・評価：</strong>試作→試食会→評価→改良</li>
+                <li><strong>レシピ確定：</strong>分量・秒数・盛り付け順をマニュアル化</li>
+                <li><strong>承認フロー：</strong>オーナー承認後に限定提供→正式導入</li>
+            </ul>
+
+            <h4>1-2. 季節・限定メニュー設計</h4>
+            <ul>
+                <li><strong>素材選定基準：</strong>北海道産・旬食材・安定供給</li>
+                <li><strong>季節イベント連動：</strong>狸まつり・雪まつりなど</li>
+                <li><strong>販売期間管理：</strong>2〜4週間の限定販売＋終了カウントダウン</li>
+                <li><strong>需要予測・ロス管理：</strong>前年実績・天候データ活用</li>
+                <li><strong>販促演出：</strong>器や演出で希少感を強調</li>
+            </ul>
+
+            <h4>2. トッピング・オプション戦略</h4>
+            <ul>
+                <li><strong>選定基準：</strong>保存性重視（冷凍・乾燥でロスゼロ）</li>
+                <li><strong>季節演出：</strong>苺・桃・栗など季節素材を短期採用</li>
+                <li><strong>SNS映え要素：</strong>パリパリ・とろとろ・色彩対比</li>
+                <li><strong>利益率設計：</strong>目標原価率20％以下</li>
+            </ul>
+
+            <h4>3. 原価計算・コスト管理</h4>
+            <ul>
+                <li><strong>原価率計算：</strong>食材費÷売価×100</li>
+                <li><strong>目標原価率：</strong>ドリンク25％／デザート30％／トッピング20％</li>
+                <li><strong>ツール活用：</strong>Googleスプレッドシート（自動計算）</li>
+                <li><strong>廃棄・ロス管理：</strong>日報にロス品・原因を記載</li>
+            </ul>
+
+            <h4>4. 価格設定・付加価値演出</h4>
+            <ul>
+                <li><strong>価格設定：</strong>目標利益率から価格決定</li>
+                <li><strong>競合比較：</strong>狸小路周辺のカフェ価格調査</li>
+                <li><strong>付加価値設計：</strong>器・盛り付け演出で高価格納得感</li>
+                <li><strong>世界観コピー文：</strong>「静けさを味わうための○○」</li>
+            </ul>
+
+            <h4>5. SNS・プロモーション設計</h4>
+            <ul>
+                <li><strong>撮影構図：</strong>真上・45度・手元クローズ</li>
+                <li><strong>投稿テンプレート：</strong>詩的・世界観重視のテキスト</li>
+                <li><strong>限定メニュー告知：</strong>終了カウントダウンストーリー</li>
+                <li><strong>スタッフ撮影訓練：</strong>簡易動画マニュアルで全員対応可</li>
+            </ul>
+        </section>
+
+        <section id="education" class="section">
+            <h2>📈 スキルアップ教育方針</h2>
+
+            <div class="important">
+                <h3>🎯 目的</h3>
+                <ul>
+                    <li>参考動画を基準に全スタッフが再現可能なスキルを習得する</li>
+                    <li>自ら動画・資料・外部情報を使い、<strong>自走して改善・習得できる文化を構築</strong></li>
+                    <li>努力や自発行動を可視化し、正当に評価する</li>
+                </ul>
+            </div>
+
+            <h3>② 成長フロー（段階的習得）</h3>
+
+            <h4>STEP 1：動画視聴（インストール）</h4>
+            <ul>
+                <li>参考動画を<strong>最低3回視聴</strong>し動作・順番・声を刷り込む</li>
+                <li>TikTokやYouTubeで類似事例を検索し、動きや手順の感覚を掴む</li>
+                <li>例：盛り付け、美しい手元動画、接客所作 など</li>
+            </ul>
+
+            <h4>STEP 2：実演（見本 → 実践）</h4>
+            <ul>
+                <li><strong>1回目：</strong>先輩スタッフが動画通り実演</li>
+                <li><strong>2回目：</strong>本人が補助付きで実践</li>
+                <li><strong>3回目：</strong>本人単独で実践 → 動画撮影</li>
+            </ul>
+
+            <h4>STEP 3：自己動画撮影・客観分析</h4>
+            <ul>
+                <li>撮影した本人動画を参考動画と比較</li>
+                <li><strong>できている点／できていない点／改善方法</strong>を記入しSlack提出</li>
+                <li>TikTokやYouTubeで改善ヒントを探す</li>
+            </ul>
+
+            <h4>③ 自走行動の必須化</h4>
+            <ul>
+                <li><strong>外部リソース検索：</strong>TikTok・YouTube・ブログから参考動画や資料を収集</li>
+                <li><strong>確認依頼：</strong>不安があれば自主的に「確認お願いします」と依頼</li>
+                <li><strong>違和感報告：</strong>気づいたズレや課題をSlackに共有</li>
+                <li><strong>相談＋提案：</strong>「原因→改善案」をセットで提示</li>
+            </ul>
+
+            <h4>④ 評価制度（努力＋自走行動）</h4>
+            
+            <div class="important">
+                <h4>✅ プラス評価</h4>
+                <ul>
+                    <li>動画分析・提出の継続</li>
+                    <li>確認依頼・違和感報告・改善提案を行動化</li>
+                </ul>
+            </div>
+
+            <div class="prohibited">
+                <h4>❌ マイナス評価</h4>
+                <ul>
+                    <li>動画・練習提出なし</li>
+                    <li>質問・相談ゼロ（指示待ち）</li>
+                </ul>
+            </div>
+
+            <h4>⑦ ゴール</h4>
+            <ul>
+                <li>「動画基準」＋「努力の見える化」＋「外部リソース検索」を習慣化</li>
+                <li>指示待ちゼロ／自分で動画を探し・分析し・改善できるスタッフを育成</li>
+                <li>「自走できる人材＝昇給・信頼・中心スタッフ」として評価</li>
+            </ul>
+        </section>
+
+        <section id="emergency" class="section">
+            <h2>🚨 緊急時対応（未確定版・後日精査予定）</h2>
+
+            <h3>1. 基本的な初動対応</h3>
+            <ul>
+                <li>即時オーナー連絡（連絡先記載予定）</li>
+                <li>スタッフ間の緊急共有</li>
+                <li>被害・状況の簡潔記録（写真・メモ）</li>
+                <li>現場の安全確保（お客様・スタッフ）</li>
+                <li>お客様誘導・説明（落ち着いたトーンで）</li>
+            </ul>
+
+            <h4>2. 体調不良・怪我・急病</h4>
+            <ul>
+                <li>お客様の体調異変発見→即報告</li>
+                <li>応急処置（救急箱場所・使用法は後日明記）</li>
+                <li>救急車/医療機関の手配手順（詳細後日）</li>
+                <li>保険・事故記録（記入例後日追加）</li>
+                <li>関係者全員への報告</li>
+            </ul>
+
+            <h4>3. 火災・災害・停電</h4>
+            <ul>
+                <li>火災時：消火器使用・避難誘導</li>
+                <li>避難経路・非常口確認（図解は後日）</li>
+                <li>電源遮断・ガス遮断手順</li>
+                <li>災害時閉店基準（詳細後日確定）</li>
+                <li>オーナー/行政連絡フロー</li>
+            </ul>
+
+            <h4>4. 重大クレーム・トラブル発生時</h4>
+            <ul>
+                <li>事実確認と冷静な対応</li>
+                <li>クレーム内容の記録・報告</li>
+                <li>相手への即時謝罪（事実確認後）</li>
+                <li>オーナー判断を仰ぐ</li>
+                <li>再発防止策の共有</li>
+            </ul>
+
+            <h4>5. 緊急連絡先・マニュアル保管</h4>
+            <ul>
+                <li>連絡先リスト（オーナー/スタッフ/行政/医療）※後日確定</li>
+                <li>緊急マニュアル設置場所（紙/Slackピン留め）</li>
+                <li>連絡ツール指示（Slack/電話/LINE等）</li>
+                <li>迷った場合の即相談ルール</li>
+                <li>最低限の判断行動（安全確保＞連絡＞記録）</li>
+            </ul>
+
+            <div class="important">
+                <h4>🔜 今後の追加予定</h4>
+                <ul>
+                    <li>連絡先リストと連絡フローチャートの図解化</li>
+                    <li>消火器・避難経路のマップ掲示</li>
+                    <li>救急箱・保険書類の場所と使用手順の明記</li>
+                    <li>緊急時シミュレーションのOJT化</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="zen-quote">
+            🦝 静寂と感謝の心で、最高のもてなしを 🦝<br>
+            <small>- たぬきカフェスタッフ一同 -</small>
         </div>
     </div>
 </body>

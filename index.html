@@ -14,6 +14,7 @@
             margin: 0;
             padding: 20px;
             min-height: 100vh;
+            scroll-behavior: smooth;
         }
         .container {
             max-width: 900px;
@@ -58,6 +59,7 @@
             border-left: 6px solid #7ba05b;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            scroll-margin-top: 100px;
         }
         h3 {
             color: #2d5016;
@@ -68,6 +70,7 @@
             background-color: #f8fdf5;
             border-left: 4px solid #9db87c;
             border-radius: 5px;
+            scroll-margin-top: 100px;
         }
         h4 {
             color: #2d5016;
@@ -124,6 +127,7 @@
             margin-bottom: 30px;
             border: 1px solid #c8e6c9;
             backdrop-filter: blur(5px);
+            z-index: 100;
         }
         .nav-link {
             display: inline-block;
@@ -155,7 +159,8 @@
             border: 1px solid #c8e6c9;
         }
         .section {
-            scroll-margin-top: 80px;
+            scroll-margin-top: 100px;
+            margin-bottom: 50px;
         }
         @media (max-width: 768px) {
             .container {
@@ -171,6 +176,9 @@
             }
             .tanuki {
                 font-size: 3em;
+            }
+            .navigation {
+                position: relative;
             }
         }
     </style>
@@ -194,7 +202,7 @@
             <a href="#emergency" class="nav-link">緊急時対応</a>
         </div>
 
-        <section id="philosophy" class="section">
+        <div id="philosophy" class="section">
             <h2>⛩ 理念・世界観・象徴</h2>
 
             <h3>たぬきカフェ3箇条</h3>
@@ -251,9 +259,9 @@
                     <li>友人に「ここは特別なカフェ」と誇りを持って言える感情</li>
                 </ul>
             </div>
-        </section>
+        </div>
 
-        <section id="service" class="section">
+        <div id="service" class="section">
             <h2>🍵 接客マニュアル（初級編）</h2>
 
             <h3>📌 マニュアルの目的と前提</h3>
@@ -303,9 +311,9 @@
                     <li>「できている」と自己判断すること</li>
                 </ul>
             </div>
-        </section>
+        </div>
 
-        <section id="menu" class="section">
+        <div id="menu" class="section">
             <h2>🍰 メニュー・商品提供</h2>
 
             <div class="important">
@@ -354,9 +362,9 @@
                 <li>盛り付けは器の余白を2割残す意識</li>
                 <li>カトラリー配置・色味・バランスも全体で調和を</li>
             </ul>
-        </section>
+        </div>
 
-        <section id="preparation" class="section">
+        <div id="preparation" class="section">
             <h2>👨‍🍳 仕込み・在庫・衛生管理</h2>
 
             <h4>4-1. 仕込み準備</h4>
@@ -399,9 +407,9 @@
                 <li>Slack日報 → 売上／在庫状況／トラブル／改善点を記入</li>
                 <li>開店・閉店時に「衛生・在庫・仕込み」チェックリスト記入（記名必須）</li>
             </ul>
-        </section>
+        </div>
 
-        <section id="development" class="section">
+        <div id="development" class="section">
             <h2>💡 商品開発・原価管理マニュアル（仮）</h2>
             
             <p><em>本マニュアルは「外枠・テンプレート」用の仮構成です。実務的に即効性は低いが、後で詳細化・図解化・動画連動しやすいように整理済み。SNS・商品開発・原価管理・価格設定をカテゴリごとに順序立てています。</em></p>
@@ -455,9 +463,9 @@
                 <li><strong>限定メニュー告知：</strong>終了カウントダウンストーリー</li>
                 <li><strong>スタッフ撮影訓練：</strong>簡易動画マニュアルで全員対応可</li>
             </ul>
-        </section>
+        </div>
 
-        <section id="education" class="section">
+        <div id="education" class="section">
             <h2>📈 スキルアップ教育方針</h2>
 
             <div class="important">
@@ -524,9 +532,9 @@
                 <li>指示待ちゼロ／自分で動画を探し・分析し・改善できるスタッフを育成</li>
                 <li>「自走できる人材＝昇給・信頼・中心スタッフ」として評価</li>
             </ul>
-        </section>
+        </div>
 
-        <section id="emergency" class="section">
+        <div id="emergency" class="section">
             <h2>🚨 緊急時対応（未確定版・後日精査予定）</h2>
 
             <h3>1. 基本的な初動対応</h3>
@@ -583,7 +591,7 @@
                     <li>緊急時シミュレーションのOJT化</li>
                 </ul>
             </div>
-        </section>
+        </div>
 
         <div class="zen-quote">
             🦝 静寂と感謝の心で、最高のもてなしを 🦝<br>
